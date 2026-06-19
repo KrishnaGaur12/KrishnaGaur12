@@ -24,7 +24,6 @@
 <br/>
 
 ![Profile Views](https://komarev.com/ghpvc/?username=KrishnaGaur12&label=Profile+Views&color=A78BFA&style=flat-square)
-
 </div>
 
 <br/><br/>
@@ -52,8 +51,7 @@ const krishna = {
     "Full-Stack System Design",
   ],
   interests : ["RAG Systems", "LLM Agents", "AI/ML"],
-  funFact   : "Spend more time naming variables
-               than writing logic 😅",
+  funFact   : "Spend more time naming variables than writing logic 😅",
 };
 ```
 
@@ -74,10 +72,6 @@ const krishna = {
 🌍 &nbsp; Based in **India**
 
 <br/>
-
-> *"Code is poetry — but only*
-> *when variable names make sense."*
-
 </td>
 </tr>
 </table>
@@ -208,9 +202,7 @@ Fault-tolerant distributed system on **ML + Blockchain + Geofencing**. Fires SOS
 <br/>
 
 <div align="center">
-  <a href="https://leetcode.com/u/999Krishna/">
-    <img src="https://leetcard.jacoblin.cool/999Krishna?theme=dark&font=JetBrains+Mono&ext=contest&border=0" width="460"/>
-  </a>
+  <img src="https://i.imgur.com/pVMtsat.jpeg" width="200" style="border-radius:12px"/>
 </div>
 
 <br/><br/>
