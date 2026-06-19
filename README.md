@@ -54,17 +54,22 @@ const krishna = {
 </td>
 <td valign="top" width="45%">
 
-&nbsp;
+<br/>
 
 🎓 &nbsp; B.Tech CSE — **ABESEC**, 2027
+
 💼 &nbsp; SDE Intern @ **Adventriq**
+
 🌱 &nbsp; Currently deep in **Agentic AI**
-🏆 &nbsp; LeetCode **1500+** · **350+ problems**
+
+🏆 &nbsp; LeetCode **1477** · **331 problems**
+
 🌍 &nbsp; Based in **India**
 
-&nbsp;
+<br/>
 
-> *"Code is poetry — but only when the variable names make sense."*
+> *"Code is poetry — but only when*
+> *the variable names make sense."*
 
 </td>
 </tr>
@@ -175,31 +180,17 @@ A **fault-tolerant distributed safety system** on ML, Blockchain & Geofencing. F
 
 ## 🧩 Competitive Programming
 
+<br/>
+
 <div align="center">
 
 | Highlight | Details |
 |:---|:---|
-| 🛡️ **LeetCode** | 1500+ rating · **350+ problems** solved across DP, Graphs & Trees |
+| 🛡️ **LeetCode** | Contest rating **1477** · Highest **1522** · **331 problems** solved · Top **51.9%** globally |
 | ⚡ **Codeforces** | 1000+ rated · consistent across 25+ rated contests |
 | 🌍 **Hacktoberfest** | Open Source Contributor — merged PRs across multiple repositories |
-| 🔧 **Systems Thinking** | DSA in real products: [search engine](https://github.com/KrishnaGaur12/ByteCrush---File-Compression-Toolkit) · [stock forecaster](https://github.com/KrishnaGaur12/QuantForecast_Forecasting-For-Portfolio-Optimisation) |
+| 🔧 **Systems Thinking** | DSA applied to real products: [search engine](https://github.com/KrishnaGaur12/ByteCrush---File-Compression-Toolkit) · [stock forecaster](https://github.com/KrishnaGaur12/QuantForecast_Forecasting-For-Portfolio-Optimisation) |
 
-</div>
-
-<br/>
-
-<div align="center">
-  <a href="https://leetcode.com/u/999Krishna/">
-    <img src="https://leetcard.jacoblin.cool/999Krishna?theme=dark&font=Fira%20Code&ext=contest" width="480"/>
-  </a>
-</div>
-
-<br/>
-
-<div align="center">
-  <a href="https://codolio.com/profile/Krishna15">
-    <img src="https://img.shields.io/badge/View%20Full%20Coding%20Journey%20on%20Codolio-1a1a2e?style=flat-square&logoColor=A78BFA"/>
-  </a>
 </div>
 
 <br/>
@@ -239,6 +230,26 @@ A **fault-tolerant distributed safety system** on ML, Blockchain & Geofencing. F
 
 ---
 
+## 🤝 Let's Connect
+
+<br/>
+
+<div align="center">
+
+Open to conversations about **AI/ML systems, backend engineering, RAG pipelines,**
+or just **building something ambitious together.**
+
+<br/>
+
+<a href="https://www.linkedin.com/in/gaurkrishna/"><img src="https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat-square&logo=linkedin&logoColor=white"/></a>
+&nbsp;&nbsp;
+<a href="mailto:krishnagaur0033@gmail.com"><img src="https://img.shields.io/badge/Gmail-Say%20Hello-EA4335?style=flat-square&logo=gmail&logoColor=white"/></a>
+&nbsp;&nbsp;
+<a href="https://xkrishnagaur.netlify.app/"><img src="https://img.shields.io/badge/Portfolio-Visit-A78BFA?style=flat-square&logo=About.me&logoColor=white"/></a>
+&nbsp;&nbsp;
+<a href="https://x.com/2m_next"><img src="https://img.shields.io/badge/X-Follow-000000?style=flat-square&logo=x&logoColor=white"/></a>
+
+</div>
 
 <br/><br/>
 
