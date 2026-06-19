@@ -23,7 +23,6 @@
 
 <br/>
 
-![Profile Views](https://komarev.com/ghpvc/?username=KrishnaGaur12&label=Profile+Views&color=A78BFA&style=flat-square)
 </div>
 
 <br/><br/>
