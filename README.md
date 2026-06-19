@@ -239,26 +239,6 @@ A **fault-tolerant distributed safety system** on ML, Blockchain & Geofencing. F
 
 ---
 
-## 🤝 Let's Connect
-
-<br/>
-
-<div align="center">
-
-Open to conversations about **AI/ML systems, backend engineering, RAG pipelines,**
-or just **building something ambitious together.**
-
-<br/>
-
-<a href="https://www.linkedin.com/in/gaurkrishna/"><img src="https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat-square&logo=linkedin&logoColor=white"/></a>
-&nbsp;&nbsp;
-<a href="mailto:krishnagaur0033@gmail.com"><img src="https://img.shields.io/badge/Gmail-Say%20Hello-EA4335?style=flat-square&logo=gmail&logoColor=white"/></a>
-&nbsp;&nbsp;
-<a href="https://xkrishnagaur.netlify.app/"><img src="https://img.shields.io/badge/Portfolio-Visit-A78BFA?style=flat-square&logo=About.me&logoColor=white"/></a>
-&nbsp;&nbsp;
-<a href="https://x.com/2m_next"><img src="https://img.shields.io/badge/X-Follow-000000?style=flat-square&logo=x&logoColor=white"/></a>
-
-</div>
 
 <br/><br/>
 
