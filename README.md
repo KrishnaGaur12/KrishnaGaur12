@@ -9,8 +9,12 @@
 <div align="center">
 <img src="https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&weight=500&size=16&duration=3000&pause=1000&color=A78BFA&center=true&vCenter=true&width=500&lines=Building+scalable+systems;MERN+%2B+Agentic+AI+%2B+Go;Open+Source+Contributor;Open+to+internships+%26+collaboration" alt="Typing SVG"/>
 </div>
+
 <br/>
+
+
 <div align="center">
+  
 [![Portfolio](https://img.shields.io/badge/Portfolio-A78BFA?style=flat-square&logo=About.me&logoColor=white)](https://xkrishnagaur.netlify.app/)&nbsp;
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/gaurkrishna/)&nbsp;
 [![Codolio](https://img.shields.io/badge/Codolio-1a1a2e?style=flat-square&logo=codeforces&logoColor=A78BFA)](https://codolio.com/profile/Krishna15)&nbsp;
