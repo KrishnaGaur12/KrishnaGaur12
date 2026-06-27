@@ -1,4 +1,4 @@
-name: generate monkeytype readme svg
+name: Update Monkeytype Stats SVG
 on:
   schedule:
     - cron: "0 */6 * * *"
@@ -8,15 +8,126 @@ permissions:
   contents: write
 
 jobs:
-  download-svg:
+  generate-svg:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v4
-      - name: Generate Monkeytype Readme SVG
-        uses: monkeytype-hub/monkeytype-readme@v1.0.0
-        with:
-          username: snydermonk
-          themes: tokyonight
-          target-branch: main
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Fetch stats and generate SVG
+        env:
+          APE_KEY: ${{ secrets.MONKEYTYPE_API_KEY }}
+        run: |
+          # Fetch personal bests
+          PB_RESPONSE=$(curl -s -H "Authorization: ApeKey $APE_KEY" \
+            "https://api.monkeytype.com/users/personalBests?mode=time")
+          
+          # Fetch user stats
+          STATS_RESPONSE=$(curl -s -H "Authorization: ApeKey $APE_KEY" \
+            "https://api.monkeytype.com/users/stats")
+
+          # Fetch user profile
+          PROFILE_RESPONSE=$(curl -s -H "Authorization: ApeKey $APE_KEY" \
+            "https://api.monkeytype.com/users/profile")
+
+          echo "PB Response: $PB_RESPONSE"
+          echo "Stats Response: $STATS_RESPONSE"
+          echo "Profile Response: $PROFILE_RESPONSE"
+
+          # Parse stats
+          TESTS_COMPLETED=$(echo "$STATS_RESPONSE" | python3 -c "
+          import sys, json
+          data = json.load(sys.stdin)
+          d = data.get('data', {})
+          started = d.get('completedTests', d.get('testsCompleted', d.get('startedTests', 0)))
+          print(started)
+          " 2>/dev/null || echo "N/A")
+
+          # Parse PB for time 15, 30, 60
+          PB_DATA=$(echo "$PB_RESPONSE" | python3 -c "
+          import sys, json
+          data = json.load(sys.stdin)
+          pbs = data.get('data', {})
+          results = {}
+          for duration in ['15', '30', '60']:
+              entries = pbs.get(duration, [])
+              if entries:
+                  best = max(entries, key=lambda x: x.get('wpm', 0))
+                  results[duration] = {
+                      'wpm': round(best.get('wpm', 0), 1),
+                      'acc': round(best.get('acc', 0), 1),
+                      'raw': round(best.get('raw', 0), 1)
+                  }
+          import json as j
+          print(j.dumps(results))
+          " 2>/dev/null || echo "{}")
+
+          echo "Parsed PB Data: $PB_DATA"
+          echo "Tests Completed: $TESTS_COMPLETED"
+
+          # Generate SVG
+          python3 -c "
+          import json, sys
+
+          pb_data = json.loads('''$PB_DATA''')
+          tests = '''$TESTS_COMPLETED'''
+
+          pb15 = pb_data.get('15', {})
+          pb30 = pb_data.get('30', {})
+          pb60 = pb_data.get('60', {})
+
+          wpm15 = pb15.get('wpm', 'N/A')
+          acc15 = pb15.get('acc', 'N/A')
+          wpm30 = pb30.get('wpm', 'N/A')
+          acc30 = pb30.get('acc', 'N/A')
+          wpm60 = pb60.get('wpm', 'N/A')
+          acc60 = pb60.get('acc', 'N/A')
+
+          svg = f'''<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"480\" height=\"320\" viewBox=\"0 0 480 320\">
+            <defs>
+              <linearGradient id=\"bg\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"100%\">
+                <stop offset=\"0%\" style=\"stop-color:#0d1117\"/>
+                <stop offset=\"100%\" style=\"stop-color:#161b22\"/>
+              </linearGradient>
+              <linearGradient id=\"accent\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"0%\">
+                <stop offset=\"0%\" style=\"stop-color:#A78BFA\"/>
+                <stop offset=\"100%\" style=\"stop-color:#7C3AED\"/>
+              </linearGradient>
+              <filter id=\"glow\">
+                <feGaussianBlur stdDeviation=\"2\" result=\"blur\"/>
+                <feMerge><feMergeNode in=\"blur\"/><feMergeNode in=\"SourceGraphic\"/></feMerge>
+              </filter>
+            </defs>
+            <rect width=\"480\" height=\"320\" rx=\"16\" fill=\"url(#bg)\" stroke=\"#30363d\" stroke-width=\"1.5\"/>
+            <rect x=\"16\" y=\"16\" width=\"448\" height=\"48\" rx=\"10\" fill=\"#1a1a2e\" opacity=\"0.8\"/>
+            <text x=\"240\" y=\"36\" text-anchor=\"middle\" fill=\"url(#accent)\" font-family=\"Segoe UI,Arial,sans-serif\" font-weight=\"800\" font-size=\"15\" letter-spacing=\"3\" filter=\"url(#glow)\">MONKEYTYPE STATS</text>
+            <text x=\"240\" y=\"54\" text-anchor=\"middle\" fill=\"#8b949e\" font-family=\"Segoe UI,Arial,sans-serif\" font-size=\"12\">snydermonk</text>
+            <rect x=\"24\" y=\"78\" width=\"200\" height=\"90\" rx=\"10\" fill=\"#1a1a2e\" opacity=\"0.6\"/>
+            <text x=\"124\" y=\"100\" text-anchor=\"middle\" fill=\"#8b949e\" font-family=\"Segoe UI,Arial,sans-serif\" font-size=\"11\">⏱ 15s Personal Best</text>
+            <text x=\"124\" y=\"128\" text-anchor=\"middle\" fill=\"#e6edf3\" font-family=\"Segoe UI,Arial,sans-serif\" font-weight=\"700\" font-size=\"28\">{wpm15} <tspan font-size=\"13\" fill=\"#8b949e\">wpm</tspan></text>
+            <text x=\"124\" y=\"156\" text-anchor=\"middle\" fill=\"#34D399\" font-family=\"Segoe UI,Arial,sans-serif\" font-size=\"12\">{acc15}% accuracy</text>
+            <rect x=\"256\" y=\"78\" width=\"200\" height=\"90\" rx=\"10\" fill=\"#1a1a2e\" opacity=\"0.6\"/>
+            <text x=\"356\" y=\"100\" text-anchor=\"middle\" fill=\"#8b949e\" font-family=\"Segoe UI,Arial,sans-serif\" font-size=\"11\">⏱ 30s Personal Best</text>
+            <text x=\"356\" y=\"128\" text-anchor=\"middle\" fill=\"#e6edf3\" font-family=\"Segoe UI,Arial,sans-serif\" font-weight=\"700\" font-size=\"28\">{wpm30} <tspan font-size=\"13\" fill=\"#8b949e\">wpm</tspan></text>
+            <text x=\"356\" y=\"156\" text-anchor=\"middle\" fill=\"#34D399\" font-family=\"Segoe UI,Arial,sans-serif\" font-size=\"12\">{acc30}% accuracy</text>
+            <rect x=\"24\" y=\"182\" width=\"200\" height=\"90\" rx=\"10\" fill=\"#1a1a2e\" opacity=\"0.6\"/>
+            <text x=\"124\" y=\"204\" text-anchor=\"middle\" fill=\"#8b949e\" font-family=\"Segoe UI,Arial,sans-serif\" font-size=\"11\">⏱ 60s Personal Best</text>
+            <text x=\"124\" y=\"232\" text-anchor=\"middle\" fill=\"#e6edf3\" font-family=\"Segoe UI,Arial,sans-serif\" font-weight=\"700\" font-size=\"28\">{wpm60} <tspan font-size=\"13\" fill=\"#8b949e\">wpm</tspan></text>
+            <text x=\"124\" y=\"260\" text-anchor=\"middle\" fill=\"#34D399\" font-family=\"Segoe UI,Arial,sans-serif\" font-size=\"12\">{acc60}% accuracy</text>
+            <rect x=\"256\" y=\"182\" width=\"200\" height=\"90\" rx=\"10\" fill=\"#1a1a2e\" opacity=\"0.6\"/>
+            <text x=\"356\" y=\"204\" text-anchor=\"middle\" fill=\"#8b949e\" font-family=\"Segoe UI,Arial,sans-serif\" font-size=\"11\">📝 Tests Completed</text>
+            <text x=\"356\" y=\"240\" text-anchor=\"middle\" fill=\"#A78BFA\" font-family=\"Segoe UI,Arial,sans-serif\" font-weight=\"700\" font-size=\"32\" filter=\"url(#glow)\">{tests}</text>
+            <text x=\"240\" y=\"306\" text-anchor=\"middle\" fill=\"#484f58\" font-family=\"Segoe UI,Arial,sans-serif\" font-size=\"10\">Powered by monkeytype.com · auto-updated every 6h</text>
+          </svg>'''
+
+          with open('monkeytype-stats.svg', 'w') as f:
+              f.write(svg)
+          print('SVG generated successfully')
+          "
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add monkeytype-stats.svg
+          git diff --cached --quiet || (git commit -m "chore: update monkeytype stats" && git push)
