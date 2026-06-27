@@ -208,7 +208,7 @@ Fault-tolerant distributed system on **ML + Blockchain + Geofencing**. Fires SOS
         <img src="https://i.imgur.com/pVMtsat.jpeg" width="300" style="border-radius:12px"/>
       </td>
       <td align="center">
-        <img src="monkeytype-readme-dark.svg" width="450" />
+        <img src="snydermonk-monkeytype-readme-pb.svg" width="450" />
       </td>
     </tr>
   </table>
