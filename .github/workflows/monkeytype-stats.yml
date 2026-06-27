@@ -1,8 +1,11 @@
 name: generate monkeytype readme svg
 on:
   schedule:
-    - cron: "0 */6 * * *" # Runs every 6 hours
-  workflow_dispatch:      # Allows manual trigger
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   download-svg:
@@ -14,6 +17,6 @@ jobs:
         uses: monkeytype-hub/monkeytype-readme@v1.0.0
         with:
           username: snydermonk
-          themes: tokyonight # Using a dark theme that matches your README vibe
+          themes: tokyonight
           target-branch: main
           github-token: ${{ secrets.GITHUB_TOKEN }}
